@@ -8,15 +8,14 @@ var mongoose = require('mongoose')
 // app.use(bodyParser.urlencoded({ extended: true }))
 // app.use(bodyParser.json())
 
-
 mongoose.connect('mongodb://localhost/onlineShop')
-
-
 
 var Product = require('./models/product')
 var User = require('./models/user')
 var Order = require('./models/order')
 
+var orderRes = require ('./controllers/orderRouts');
+app.use('/orders', orderRes)
 
 var niall = new User({
   name: 'Niall',
@@ -61,7 +60,7 @@ order1.save(function(err, order) {
     })
 })
 
-
+app.listen(process.env.PORT || 3000)
 
 
 
