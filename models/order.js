@@ -1,4 +1,5 @@
 var mongoose    = require('mongoose');
+
 var Product     = mongoose.model('Product') 
 var User        = mongoose.model('User') 
 
@@ -7,7 +8,7 @@ var OrderSchema = new mongoose.Schema({
   createdAt:       Date,
   address:         { street: String, postcode: String, town: String, country: String },
   products:        [Product.schema],
-  user:            [User.schema]
+  User:            { type: mongoose.Schema.ObjectId, ref: 'User'} 
   
 });
 
