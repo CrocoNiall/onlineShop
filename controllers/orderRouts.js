@@ -30,6 +30,29 @@ router.delete('/:id', function(req, res) {
   })
 });
 
+// UPDATE
+router.put('/:id', function(req, res) {
+  Order.findByIdAndUpdate({_id: req.params.id}, req.body, function(err, order){
+    if(err) console.log(err)
+    res.json(order);
+  })
+});
+
+//CREATE
+router.post('/', function(req, res){
+  var data = req.body;
+  var newOrder = new Order({
+    createdAt: data.name,
+    address: data.price,
+    description: data.description
+  })
+
+  newOrder.save(function (err, product) {
+    if(err) console.log(err);
+    console.log('Product has been created!');
+    res.json(product);
+  });
+})
 
 
 module.exports = router;
